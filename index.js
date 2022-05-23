@@ -1,10 +1,24 @@
-// The main file of the RESTful application server.
+/*
+* The main file of the RESTful application server.
+*/
 
+// Dependencies
 var http = require('http');
+var url = require('url');
 
 // The server should respond to all the incoming request with a string.
-var server = http.createServer(function(req,res){
-    res.end('Hello world\n');
+var server = http.createServer(function(req, res){
+
+    // Get and parse the url
+    var parsedURL = url.parse(req.url, true);
+    var path = parsedURL.pathname.replace('/^\/+|\/+$/g', '');
+
+    // Send the response
+    console.log('The server is listining on port 3000 now.')
+
+    // Logging the request
+    console.log('Request received on ' + path);
+
 });
 
 // Start the server and have it listen on the port 3000.
