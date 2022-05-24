@@ -19,11 +19,16 @@ var server = http.createServer(function(req, res){
     // Get the HTTP method
     var httpMethod = req.method.toLowerCase();
 
+    // Get the header
+    var httpHeaders = req.rawHeaders;
+
     // Send the response
     console.log('The server is listening on port 3000 now.')
 
     // Logging the request
-    console.log('Request received on ' + path + ' with method ' + httpMethod + '. Query string parameters: ', queryStringObject);
+    console.log('Request received on ' + path + ' with method ' + httpMethod);
+    console.log('Query string parameters: ', queryStringObject);
+    console.log('Headers: ' + httpHeaders);
 
 });
 
