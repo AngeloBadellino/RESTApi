@@ -13,6 +13,9 @@ var server = http.createServer(function(req, res){
     var parsedURL = url.parse(req.url, true);
     var path = parsedURL.pathname.replace('/^\/+|\/+$/g', '');
 
+    // Get the query string as an object
+    var queryStringObject = parsedURL.query;
+
     // Get the HTTP method
     var httpMethod = req.method.toLowerCase();
 
@@ -20,7 +23,7 @@ var server = http.createServer(function(req, res){
     console.log('The server is listening on port 3000 now.')
 
     // Logging the request
-    console.log('Request received on ' + path + ' with method ' + httpMethod + '.');
+    console.log('Request received on ' + path + ' with method ' + httpMethod + '. Query string parameters: ', queryStringObject);
 
 });
 
