@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "b52d6100-3d81-47ec-8ce7-f62558259ca2",
+		"name": "Node Js RESTful API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2464278"
+	},
+	"item": [
+		{
+			"name": "Test Headers request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "header1",
+						"value": "apples",
+						"type": "text"
+					},
+					{
+						"key": "header2",
+						"value": "oranges",
+						"type": "text"
+					},
+					{
+						"key": "header",
+						"value": "berries",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/endpoint?parameter1=uno",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"endpoint"
+					],
+					"query": [
+						{
+							"key": "parameter1",
+							"value": "uno"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
