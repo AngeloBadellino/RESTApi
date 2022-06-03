@@ -45,6 +45,50 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Test Payload request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "header1",
+						"value": "apples",
+						"type": "text"
+					},
+					{
+						"key": "header2",
+						"value": "oranges",
+						"type": "text"
+					},
+					{
+						"key": "header",
+						"value": "berries",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "fwfwfw"
+				},
+				"url": {
+					"raw": "localhost:3000/endpoint?parameter1=uno",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"endpoint"
+					],
+					"query": [
+						{
+							"key": "parameter1",
+							"value": "uno"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

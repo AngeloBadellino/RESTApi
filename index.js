@@ -4,7 +4,9 @@
 
 // Dependencies
 var http = require('http');
+const { StringDecoder } = require('string_decoder');
 var url = require('url');
+var stringDecoder = require('string_decoder').StringDecoder;
 
 // The server should respond to all the incoming requests with a string.
 var server = http.createServer(function(req, res){
@@ -25,11 +27,21 @@ var server = http.createServer(function(req, res){
     // Send the response
     console.log('The server is listening on port 3000 now.')
 
-    // Logging the request
-    console.log('Request received on ' + path + ' with method ' + httpMethod);
-    console.log('Query string parameters: ', queryStringObject);
-    console.log('Headers: ' + httpHeaders);
+    // Get the payload
+    var decoder = new StringDecoder('utf-8');
+    var buffer = '';
+    req.on('data', function(data){
+        buffer += decoder.write(data);
+    });
+    req.on('end', function(){
+        buffer += decoder.end();
 
+        // The end evend of the requests is always being fired.
+        console.log('Request received on ' + path + ' with method ' + httpMethod);
+        console.log('Query string parameters: ', queryStringObject);
+        console.log('Headers: ' + httpHeaders);
+        console.log('Payload: ' + buffer);
+    });
 });
 
 // Start the server and have it listen on the port 3000.
