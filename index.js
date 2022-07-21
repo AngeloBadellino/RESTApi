@@ -3,11 +3,11 @@
 */
 
 // Dependencies
-const { stat } = require('fs');
+var { stat } = require('fs');
 var http = require('http');
-const { StringDecoder } = require('string_decoder');
 var url = require('url');
-var stringDecoder = require('string_decoder').StringDecoder;
+var StringDecoder = require('string_decoder').StringDecoder;
+var config = require('./config');
 
 // The server should respond to all the incoming requests with a string.
 var server = http.createServer(function(req, res){
@@ -67,8 +67,8 @@ var server = http.createServer(function(req, res){
     }); 
 });
 
-// Start the server and have it listen on the port 3000.
-server.listen(3000, function(){
+// Start the server.
+server.listen(config.port, function(){
     console.log("The server is listening on the port 3000 now.");
 });
 
