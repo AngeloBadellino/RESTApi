@@ -91,15 +91,11 @@ var unifiedServer = function(req, res) {
 // We define the handler we use to return back the data
 var handlers = {};
 
-handlers.sample = function (data, callback){
-    callback(404, {'name': 'sample handler'});
-}
-
-handlers.notFound = function (data, callback){
-    callback(406);
+handlers.ping = function (data, callback){
+    callback(200);
 }
 
 // The router object that will redirect the request to the correct handler
 router = {
-    'sample' : handlers.sample
+    'ping' : handlers.ping
 }
