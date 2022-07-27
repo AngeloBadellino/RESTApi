@@ -9,6 +9,13 @@ var https = require('https');
 var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
+var _data = require('./lib/data')
+
+// Testing
+// @TODO delete this
+_data.delete('test', 'newfile', function(err){
+    console.log('This was the error:', err);
+});
 
 // The http server should respond to all the incoming requests on its port.
 var httpServer = http.createServer(function(req, res){
