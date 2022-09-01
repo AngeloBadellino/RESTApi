@@ -8,14 +8,9 @@ var http = require('http');
 var https = require('https');
 var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
-var config = require('./config');
-var _data = require('./lib/data')
-
-// Testing
-// @TODO delete this
-_data.delete('test', 'newfile', function(err){
-    console.log('This was the error:', err);
-});
+var config = require('./lib/config');
+var handlers = require('./lib/handlers');
+var helpers = require('./lib/helpers');
 
 // The http server should respond to all the incoming requests on its port.
 var httpServer = http.createServer(function(req, res){
@@ -70,11 +65,11 @@ var unifiedServer = function(req, res) {
        chosenHandler = typeof(router[path]) !== 'undefined' ? router[path] : handlers.notFound;
 
        var data = {
-           'Trimmed Path' : path,
-           'Query String' : queryStringObject,
-           'Method': httpMethod,
-           'Headers': httpHeaders,
-           'Payload': buffer
+           'trimmedpath' : path,
+           'querystring' : queryStringObject,
+           'method': httpMethod,
+           'headers': httpHeaders,
+           'payload':  helpers.parseJsonToObject(buffer)
        };
 
        chosenHandler(data, function(statusCode, payload){
@@ -95,14 +90,8 @@ var unifiedServer = function(req, res) {
    });
 }
 
-// We define the handler we use to return back the data
-var handlers = {};
-
-handlers.ping = function (data, callback){
-    callback(200);
-}
-
 // The router object that will redirect the request to the correct handler
 router = {
-    'ping' : handlers.ping
+    'ping' : handlers.ping,
+    'users' : handlers.users
 }
