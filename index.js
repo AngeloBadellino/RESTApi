@@ -91,8 +91,9 @@ var unifiedServer = function(req, res) {
 }
 
 // The router object that will redirect the request to the correct handler
-router = {
+var router = {
     'ping' : handlers.ping,
     'users' : handlers.users,
-    'tokens' : handlers.tokens
-}
+    'tokens' : handlers.tokens,
+    'checks' : handlers.checks
+  };
